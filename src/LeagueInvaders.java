@@ -7,7 +7,7 @@ static final int height= 800;
 GamePanel mygamepanel;
 	public LeagueInvaders() {
 		mygamepanel = new GamePanel();
-		myFrame = new JFrame();
+		myFrame = new JFrame("League Invaders");
 myFrame.setSize(width, height);
 	}
 	
