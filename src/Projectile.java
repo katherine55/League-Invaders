@@ -6,14 +6,17 @@ public class Projectile extends GameObject {
 	int speed = 10;
 
 	Projectile(int x, int y, int width, int height) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		super(x, y, width, height);
+//		this.x = x;
+//		this.y = y;
+//		this.width = width;
+//		this.height = height;
 
 	}
 
 	void update() {
+		super.update();
+
 		y -= speed;
 		if (y < 0) {
 
@@ -25,8 +28,7 @@ public class Projectile extends GameObject {
 
 	void draw(Graphics g) {
 
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.bulletImg, x, y, width, height, null);
 
 	}
 

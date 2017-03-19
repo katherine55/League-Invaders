@@ -8,16 +8,20 @@ static boolean down;
 static boolean right;
 static boolean left;
 	Rocketship (int x, int y, int width, int height) {
-		this.x = x;
-		this.y= y;
-		this.width=width;
-		this.height=height;
+		super(x, y, width, height);
+//		this.x = x;
+//		this.y= y;
+//		this.width=width;
+//		this.height=height;
 		speed = 5;
 		
 	}
 	
 	void update()
 	{
+		
+		super.update();
+		
 		if(up){
 			y-=speed;
 			
@@ -51,9 +55,7 @@ static boolean left;
 	
 	void draw(Graphics g){
 		
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, width, height);
-
+		g.drawImage(GamePanel.rocketImg, x, y, width, height, null);
 		
 	}
 	

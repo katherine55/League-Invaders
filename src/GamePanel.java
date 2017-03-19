@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -20,6 +23,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font enterFont;
 	Font spaceFont;
 
+	public static BufferedImage alienImg;
+	public static BufferedImage rocketImg;
+	public static BufferedImage bulletImg;
+	
 	Font overFont;
 	Font killFont;
 	Font backFont;
@@ -37,6 +44,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		killFont = new Font("Arial", Font.PLAIN, 24);
 		backFont = new Font("Arial", Font.PLAIN, 24);
 		// myGameObject = new GameObject();
+		
+		try {
+			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -55,6 +71,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		manager.update();
 		manager.manageEnemies();
+		manager.checkCollision();
+		
+		if(denny.isAlive == false){
+			
+			currentState = END_STATE;
+			manager.reset();
+			denny = new Rocketship(250, 700, 50, 50);
+			manager.addObject(denny);
+			
+		}
 
 	}
 
@@ -98,7 +124,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setColor(Color.black);
 		g.setFont(killFont);
-		g.drawString("You killed " + "0" + " aliens.", 145, 375);
+		g.drawString("You killed " + manager.getScore() + " aliens.", 145, 375);
 
 		g.setColor(Color.black);
 		g.setFont(backFont);

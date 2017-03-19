@@ -6,24 +6,29 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-	boolean isAlive=true;
-	
-	Rectangle tectangle = new Rectangle();
-	//part12
-	
-GameObject(){}
+	boolean isAlive = true;
 
-	void update(){
-		
+	Rectangle collisionBox;
+	// part12
+
+	GameObject(int x, int y, int height, int width) {
+
+		this.x = x;
+		this.y = y;
+		this.height = height;
+		this.width = width;
+
+		collisionBox = new Rectangle();
+
 	}
-	
-	void draw(Graphics g){
-		
+
+	void update() {
+		collisionBox.setBounds(x, y, width, height);
+
 	}
-	
-	
-	
-	
-	
-	
+
+	void draw(Graphics g) {
+
+	}
+
 }
