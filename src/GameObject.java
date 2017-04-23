@@ -9,7 +9,7 @@ public class GameObject {
 	boolean isAlive = true;
 
 	Rectangle collisionBox;
-	// part12
+	
 
 	GameObject(int x, int y, int height, int width) {
 
